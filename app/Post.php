@@ -17,4 +17,10 @@ class Post extends BaseModel
     {
         return $this->belongsTo('\App\User','user_id','id');
     }
+
+    public function comments()
+    {
+        $this->hasMany('\App\comment','post_id','id')->orderBy('created_at','desc');
+    }
+
 }

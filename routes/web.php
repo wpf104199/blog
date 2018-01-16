@@ -25,7 +25,7 @@ Route::get('/posts','\App\Http\Controllers\PortController@index');
 Route::get('/posts/create','\App\Http\Controllers\PortController@create');
 Route::get('/posts/{post}','\App\Http\Controllers\PortController@show');
 Route::post('/posts','\App\Http\Controllers\PortController@add');
+Route::post('/posts/{post}/comment','\App\Http\Controllers\PortController@comment');
 Route::get('/posts/{post}/edit','\App\Http\Controllers\PortController@edit');
 Route::put('/posts/{post}','\App\Http\Controllers\PortController@update');
 Route::get('/posts/{post}/delete','\App\Http\Controllers\PortController@delete');
-

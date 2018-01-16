@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Comment;
 use App\Port;
 use App\Post;
 
@@ -65,5 +66,13 @@ class PortController extends Controller
         $this->authorize('delete',$post);
         $post->delete();
         return redirect('/posts');
+    }
+
+    public function comment(\App\Post $post)
+    {
+        $this->validate(request(),[
+            'contents' => 'required|min:3'
+        ]);
+        Comment::
     }
 }
