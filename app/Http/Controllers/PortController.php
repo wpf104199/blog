@@ -70,9 +70,17 @@ class PortController extends Controller
 
     public function comment(\App\Post $post)
     {
+        if(!\Auth::check())
+        {
+            return back()->withErrors('请先登录');
+        }
         $this->validate(request(),[
             'contents' => 'required|min:3'
         ]);
-        Comment::
+        $comment = new Comment();
+        $comment->user_id = \Auth::id;
+        $comment->contents = request('contents');
+        $post->comments()->save($comment);
+        return back();
     }
 }

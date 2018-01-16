@@ -30,14 +30,16 @@
                 <div class="panel-heading">评论</div>
 
                 <!-- List group -->
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <h5>2017-05-28 10:15:08 by {{$post->user_id}}</h5>
-                        <div>
-                            这是第一个评论这是第一个评论这是第一个评论这是第一个评论这是第一个评论这是第一个评论这是第一个评论这是第一个评论这是第一个评论
-                        </div>
-                    </li>
-                </ul>
+                {{--<ul class="list-group">--}}
+                    {{--@foreach($post->comments as $comment)--}}
+                    {{--<li class="list-group-item">--}}
+                        {{--<h5>{{$comment->created_at}} by {{$post->user_id}}</h5>--}}
+                        {{--<div>--}}
+                            {{--{{$comment->contents}}--}}
+                        {{--</div>--}}
+                    {{--</li>--}}
+                    {{--@endforeach--}}
+                {{--</ul>--}}
             </div>
 
             <div class="panel panel-default">
@@ -50,13 +52,13 @@
                         {{csrf_field()}}
                         <li class="list-group-item">
                             <textarea name="contents" class="form-control" rows="10"></textarea>
-                            @include('layout/error')
                             <button class="btn btn-default" type="submit">提交</button>
                         </li>
                     </form>
 
                 </ul>
             </div>
-
+            @include('layout/error')
         </div><!-- /.blog-main -->
+
     @endsection
