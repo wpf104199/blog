@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/posts');
 });
 Route::get('/register','\App\Http\Controllers\RegisterController@index');
 Route::post('/register','\App\Http\Controllers\RegisterController@register');
