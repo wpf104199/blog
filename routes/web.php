@@ -19,8 +19,11 @@ Route::post('/register','\App\Http\Controllers\RegisterController@register');
 Route::get('/login','\App\Http\Controllers\LoginController@index');
 Route::post('/login','\App\Http\Controllers\LoginController@login');
 Route::get('/logout','\App\Http\Controllers\LoginController@logout');
+
 Route::get('/user/my/setting','\App\Http\Controllers\UserController@setting');
+Route::get('/user/{user}','\App\Http\Controllers\UserController@index');
 Route::post('/user/my/setting','\App\Http\Controllers\UserController@settingStore');
+
 Route::get('/posts','\App\Http\Controllers\PortController@index');
 Route::get('/posts/create','\App\Http\Controllers\PortController@create');
 Route::get('/posts/{post}','\App\Http\Controllers\PortController@show');
@@ -31,3 +34,5 @@ Route::put('/posts/{post}','\App\Http\Controllers\PortController@update');
 Route::get('/posts/{post}/delete','\App\Http\Controllers\PortController@delete');
 Route::get('/posts/{post}/zan','\App\Http\Controllers\PortController@zan');
 Route::get('/posts/{post}/unzan','\App\Http\Controllers\PortController@unzan');
+
+Route::get('/notices','\App\Http\Controllers\NoticesController@index');

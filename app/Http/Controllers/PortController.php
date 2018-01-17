@@ -12,12 +12,12 @@ namespace App\Http\Controllers;
 use App\Comment;
 use App\Port;
 use App\Post;
-
+use App\Zan;
 class PortController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderBy('created_at','desc')->withCount('comments')->paginate(2);
+        $posts = Post::orderBy('created_at','desc')->withCount(['comments','zans'])->paginate(6);
         return view('post/index',compact('posts'));
     }
 
@@ -86,14 +86,17 @@ class PortController extends Controller
     }
     public function zan(\App\Post $post)
     {
-        $post_id = $post->id;
-        $user_id = \Auth::id();
-        $zan = new \App\Zan();
-        $zan->firstOrCreate(compact('post_id','user_id'));
+        $parem = [
+            'post_id' => $post->id,
+            'user_id' => \Auth::id(),
+        ];
+        $zan = new Zan();
+        $zan->firstOrCreate($parem);
         return back();
     }
     public function unzan(\App\Post $post)
     {
-
+        $post->zan(\Auth::id())->delete();
+        return back();
     }
 }

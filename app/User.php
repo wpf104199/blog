@@ -15,4 +15,9 @@ use Illuminate\Foundation\Auth\User as Authenticatble;
 class User extends Authenticatble
 {
     protected $fillable = ['name','email','password','remember_token'];
+
+    public function posts()
+    {
+        return $this->hasMany('\App\Post','user_id','id');
+    }
 }

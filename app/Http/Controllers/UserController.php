@@ -10,12 +10,14 @@ namespace App\Http\Controllers;
 
 
 use App\User;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(\App\User $user)
     {
-        return view('user/index');
+        $posts = $user->posts;
+        return view('user/index',compact('posts'));
     }
 
     public function setting()
@@ -24,7 +26,7 @@ class UserController extends Controller
         return view('user/setting',compact('user'));
     }
 
-    public function settingStore()
+    public function settingStore(Request $request)
     {
         $this->validate(request(),[
             'name' => 'required|min:3|max:15'
@@ -38,8 +40,14 @@ class UserController extends Controller
                 return back()->withErrors('用户名已存在');
             }
             $user->name = $name;
-            $user->save();
         }
+        if($request->file('avatar'))
+        {
+            $path = $request->file('avatar')->storePublicly('public');
+            $path = explode('/',$path);
+            $user->avatar = '/storage/'.$path[1];
+        }
+        $user->save();
         return back();
     }
 }
