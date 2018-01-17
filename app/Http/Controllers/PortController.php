@@ -17,7 +17,7 @@ class PortController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderBy('created_at','desc')->paginate(2);
+        $posts = Post::orderBy('created_at','desc')->withCount('comments')->paginate(2);
         return view('post/index',compact('posts'));
     }
 
@@ -78,9 +78,10 @@ class PortController extends Controller
             'contents' => 'required|min:3'
         ]);
         $comment = new Comment();
-        $comment->user_id = \Auth::id;
+        $comment->user_id = \Auth::id();
         $comment->contents = request('contents');
-        $post->comments()->save($comment);
+        $comment->post_id = $post->id;
+        $comment->save();
         return back();
     }
 }

@@ -20,7 +20,7 @@ class Post extends BaseModel
 
     public function comments()
     {
-        $this->hasMany('\App\comment','post_id','id')->orderBy('created_at','desc');
+        return $this->hasMany('\App\Comment','post_id','id')->orderBy('created_at','desc');
     }
 
 }

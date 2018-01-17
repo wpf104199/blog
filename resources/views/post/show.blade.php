@@ -30,22 +30,22 @@
                 <div class="panel-heading">评论</div>
 
                 <!-- List group -->
-                {{--<ul class="list-group">--}}
-                    {{--@foreach($post->comments as $comment)--}}
-                    {{--<li class="list-group-item">--}}
-                        {{--<h5>{{$comment->created_at}} by {{$post->user_id}}</h5>--}}
-                        {{--<div>--}}
-                            {{--{{$comment->contents}}--}}
-                        {{--</div>--}}
-                    {{--</li>--}}
-                    {{--@endforeach--}}
-                {{--</ul>--}}
+                <ul class="list-group">
+                    @foreach($post->comments as $comment)
+                    <li class="list-group-item">
+                        <h5>{{$comment->created_at}} by {{$comment->user->name}}</h5>
+                        <div>
+                            {{$comment->contents}}
+                        </div>
+                    </li>
+                    @endforeach
+                </ul>
             </div>
 
             <div class="panel panel-default">
                 <!-- Default panel contents -->
+                @include('layout/error')
                 <div class="panel-heading">发表评论</div>
-
                 <!-- List group -->
                 <ul class="list-group">
                     <form action="/posts/{{$post->id}}/comment" method="post">
@@ -58,7 +58,6 @@
 
                 </ul>
             </div>
-            @include('layout/error')
         </div><!-- /.blog-main -->
 
     @endsection
