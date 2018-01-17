@@ -29,3 +29,5 @@ Route::post('/posts/{post}/comment','\App\Http\Controllers\PortController@commen
 Route::get('/posts/{post}/edit','\App\Http\Controllers\PortController@edit');
 Route::put('/posts/{post}','\App\Http\Controllers\PortController@update');
 Route::get('/posts/{post}/delete','\App\Http\Controllers\PortController@delete');
+Route::get('/posts/{post}/zan','\App\Http\Controllers\PortController@zan');
+Route::get('/posts/{post}/unzan','\App\Http\Controllers\PortController@unzan');

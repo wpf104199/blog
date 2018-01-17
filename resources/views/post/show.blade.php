@@ -19,10 +19,12 @@
                 <p class="blog-post-meta">{{$post->created_at}}   by <a href="{{$post->user_id}}">{{$post->user->name}}</a></p>
 
                 <p>{{$post->contents}}<p><br></p></p>
+                @if(\Auth::check())
                 <div>
                     <a href="/posts/{{$post->id}}/zan" type="button" class="btn btn-primary btn-lg">赞</a>
-
+                    <a href="/posts/{{$post->id}}/unzan" type="button" class="btn btn-primary btn-lg">取消赞</a>
                 </div>
+                @endif
             </div>
 
             <div class="panel panel-default">

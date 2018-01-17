@@ -23,4 +23,9 @@ class Post extends BaseModel
         return $this->hasMany('\App\Comment','post_id','id')->orderBy('created_at','desc');
     }
 
+    public function zan()
+    {
+        return $this->hasOne('');
+    }
+
 }

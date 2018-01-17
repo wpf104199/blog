@@ -84,4 +84,16 @@ class PortController extends Controller
         $comment->save();
         return back();
     }
+    public function zan(\App\Post $post)
+    {
+        $post_id = $post->id;
+        $user_id = \Auth::id();
+        $zan = new \App\Zan();
+        $zan->firstOrCreate(compact('post_id','user_id'));
+        return back();
+    }
+    public function unzan(\App\Post $post)
+    {
+
+    }
 }
