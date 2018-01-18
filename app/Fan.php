@@ -11,5 +11,12 @@ namespace App;
 
 class Fan extends BaseModel
 {
-
+    function fuser()
+    {
+        return $this->hasOne('\App\User','fans_id','id');
+    }
+    function suser()
+    {
+        return $this->hasOne('\App\User','start_id','id');
+    }
 }

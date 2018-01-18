@@ -16,8 +16,14 @@ class UserController extends Controller
 {
     public function index(\App\User $user)
     {
-        $posts = $user->posts;
-        return view('user/index',compact('posts'));
+        $posts = $user->posts()->orderBy('created_at','desc')->take(10)->get();
+
+        $user = User::withCount(['posts','starts','fans'])->find($user->id);
+        $starts = $user->starts;
+        $suser = User::whereIn('id',$starts->pluck('start_id'))->withCount(['posts','starts','fans'])->get();
+        $fans = $user->fans;
+        $fuser = User::whereIn('id',$fans->pluck('fans_id'))->withCount(['posts','starts','fans'])->get();
+        return view('user/index',compact('posts','user','suser','fuser'));
     }
 
     public function setting()
