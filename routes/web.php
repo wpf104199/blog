@@ -24,6 +24,9 @@ Route::get('/user/my/setting','\App\Http\Controllers\UserController@setting');
 Route::get('/user/{user}','\App\Http\Controllers\UserController@index');
 Route::post('/user/my/setting','\App\Http\Controllers\UserController@settingStore');
 
+Route::post('/user/{user}/fan','\App\Http\Controllers\UserController@doFan');
+Route::post('/user/{user}/unfan','\App\Http\Controllers\UserController@doUnfan');
+
 Route::get('/posts','\App\Http\Controllers\PortController@index');
 Route::get('/posts/create','\App\Http\Controllers\PortController@create');
 Route::get('/posts/{post}','\App\Http\Controllers\PortController@show');

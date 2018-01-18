@@ -16,7 +16,7 @@
                     @endcan
                 </div>
 
-                <p class="blog-post-meta">{{$post->created_at}}   by <a href="{{$post->user_id}}">{{$post->user->name}}</a></p>
+                <p class="blog-post-meta">{{$post->created_at}}   by <a href="/user/{{$post->user_id}}">{{$post->user->name}}</a></p>
 
                 <p>{{$post->contents}}<p><br></p></p>
                 @if(\Auth::check())

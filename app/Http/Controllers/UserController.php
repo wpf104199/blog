@@ -26,6 +26,31 @@ class UserController extends Controller
         return view('user/index',compact('posts','user','suser','fuser'));
     }
 
+    public function doFan(\App\User $user)
+    {
+        $res = \Auth::user()->doFan($user->id);
+        if($res)
+        {
+            return json_encode(['error'=>0]);
+        }
+        else
+        {
+            return json_encode(['error'=>1,'msg'=>'error']);
+        }
+    }
+    public function doUnfan(\App\User $user)
+    {
+        $res = \Auth::user()->doUnfan($user->id);
+        if($res)
+        {
+            return json_encode(['error'=>0]);
+        }
+        else
+        {
+            return json_encode(['error'=>1,'msg'=>'error']);
+        }
+    }
+
     public function setting()
     {
         $user = \Auth::user();
