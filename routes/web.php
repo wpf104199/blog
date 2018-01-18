@@ -39,3 +39,6 @@ Route::get('/posts/{post}/zan','\App\Http\Controllers\PortController@zan');
 Route::get('/posts/{post}/unzan','\App\Http\Controllers\PortController@unzan');
 
 Route::get('/notices','\App\Http\Controllers\NoticesController@index');
+
+Route::get('/topic/{topic}','\App\Http\Controllers\TopicsController@show');
+Route::post('/topic/{topic}/submit','\App\Http\Controllers\TopicsController@submit');

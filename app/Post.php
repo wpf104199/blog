@@ -11,6 +11,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Post extends BaseModel
 {
     public function user()
@@ -30,6 +31,21 @@ class Post extends BaseModel
     public function zans()
     {
         return $this->hasMany('\App\Zan','post_id','id');
+    }
+    public function scopesAuthorBy(Builder $query,$user_id)
+    {
+        return $query->where('user_id',$user_id);
+    }
+
+    public function postTopics()
+    {
+        return $this->hasMany(\App\PostTopic::class,'post_id','id');
+    }
+    public function scopeTopicNotBy(Builder $query,$topic_id)
+    {
+        return $query->doesntHave('postTopics','add',function ($q) use($topic_id){
+           $q->where('topic_id',$topic_id);
+        });
     }
 
 }
